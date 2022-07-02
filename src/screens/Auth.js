@@ -21,7 +21,11 @@ export default function Auth() {
       <KeyboardAvoidingView
         behavior={Platform.OS === 'ios' ? 'padding' : 'height'}
       >
-        {showLogin ? <LoginForm changeForm={changeForm} /> : <RegisterForm changeForm={changeForm} />}
+        {showLogin ? (
+          <LoginForm changeForm={changeForm} />
+        ) : (
+          <RegisterForm changeForm={changeForm} />
+        )}
       </KeyboardAvoidingView>
     </View>
   );
@@ -32,6 +36,6 @@ const styles = StyleSheet.create({
     width: '100%',
     height: 50,
     resizeMode: 'contain',
-    marginBottom: 20,
+    //  marginBottom: 20,
   },
 });

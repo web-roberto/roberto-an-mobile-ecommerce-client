@@ -5,11 +5,14 @@ import { formStyle } from '../../styles';
 import { useFormik } from 'formik';
 import * as Yup from 'yup';
 import Toast from 'react-native-root-toast';
+import useAuth from '../../hooks/useAuth';
 import { loginApi } from '../../api/user';
 
 export default function LoginForm(props) {
   const { changeForm } = props;
   const [loading, setLoading] = useState(false);
+  const auth = useAuth(); //devuelve un useContext(AuthContext)
+  const { login } = auth; //sacamos la funcion login()
 
   const formik = useFormik({
     initialValues: initialValues(),
@@ -19,7 +22,10 @@ export default function LoginForm(props) {
       // console.log('Registro de usuario enviado');
       try {
         const response = await loginApi(formData);
-        if (!response.ok) throw new Error('Error is username or password');
+        console.log('the response to LOGIN API the de DataBase is: ', response);
+        if (response.statusCode) throw 'Error is username or password';
+        //enviamos informacion(props) de un hijo a un 'padre'
+        login(response); //'response' cotiene el token y mas informacion
 
         console.log(response);
         //   changeForm();
