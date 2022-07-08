@@ -5,10 +5,10 @@ import { createMaterialBottomTabNavigator } from '@react-navigation/material-bot
 import Home from '../screens/Home';
 import Favorites from '../screens/Favorites';
 import Cart from '../screens/Cart';
-import Account from '../screens/Account';
 import colors from '../styles/colors';
 import AwesomeIcon from 'react-native-vector-icons/FontAwesome';
 import AccountStack from './AccountStack';
+import Account from '../screens/Account';
 
 const Tab = createMaterialBottomTabNavigator();
 
@@ -32,7 +32,7 @@ export default function AppNavigation() {
         <Tab.Screen name="cart" component={Cart} options={{ title: 'Cart' }} />
         <Tab.Screen
           name="account"
-          component={Account}
+          component={AccountStack}
           options={{ title: 'My Account,' }}
         />
       </Tab.Navigator>
